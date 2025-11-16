@@ -287,8 +287,8 @@ export default definePlugin({
     description: "Adds a small dog or cat that chases your mouse cursor around Discord.",
     authors: [
         {
-            name: "Your Name Here",
-            id: 123456789012345678n, // replace with your actual user ID if you want
+            name: "XoX-1",
+            id: 123456789012345678n,
         },
     ],
 
