@@ -1,0 +1,231 @@
+/*
+ * CursorPet styles (dog + cat)
+ */
+
+.vc-cursor-pet-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+
+    /* Always visible, never intercept clicks */
+    pointer-events: none;
+    z-index: 999999;
+
+    transform: translate3d(0, 0, 0);
+    transition: opacity 160ms ease-out;
+    opacity: 1;
+}
+
+.vc-cursor-pet-sprite {
+    position: absolute;
+
+    /* Center the sprite on the transform origin */
+    transform: translate3d(-50%, -50%, 0);
+
+    /* Common look */
+    font-size: 32px;
+    line-height: 1;
+    font-family: system-ui, "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+
+    animation-duration: 1.2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+/* ----------------- Animal art (sprites) ----------------- */
+
+.vc-cursor-pet-dog::before {
+    content: "🐶";
+    display: block;
+}
+
+.vc-cursor-pet-cat::before {
+    content: "🐱";
+    display: block;
+}
+
+/* You can switch to image sprites instead, e.g.:
+.vc-cursor-pet-dog {
+    width: 48px;
+    height: 48px;
+    background-image: url("dog.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.vc-cursor-pet-cat {
+    width: 48px;
+    height: 48px;
+    background-image: url("cat.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.vc-cursor-pet-dog::before,
+.vc-cursor-pet-cat::before {
+    content: "";
+}
+*/
+
+/* ----------------- State markers (shared class names) ----------------- */
+
+.vc-cursor-pet-running,
+.vc-cursor-pet-idle,
+.vc-cursor-pet-sleeping {
+    /* state-specific animations attached below per animal */
+    /* hint to the browser this will animate for smoother rendering */
+    will-change: transform;
+}
+
+/* ----------------- Dog animations ----------------- */
+
+.vc-cursor-pet-dog.vc-cursor-pet-running {
+    animation-name: vc-cursor-dog-run;
+}
+
+.vc-cursor-pet-dog.vc-cursor-pet-idle {
+    animation-name: vc-cursor-dog-idle;
+}
+
+.vc-cursor-pet-dog.vc-cursor-pet-sleeping {
+    animation-name: vc-cursor-dog-sleep;
+    animation-duration: 1.6s;
+    opacity: 0.95;
+}
+
+@keyframes vc-cursor-dog-run {
+    0% {
+        transform: translate3d(-50%, -50%, 0) translateY(0) scale(1);
+    }
+    20% {
+        transform: translate3d(-50%, -50%, 0) translateY(-3px) scale(1.05);
+    }
+    40% {
+        transform: translate3d(-50%, -50%, 0) translateY(0) scale(1);
+    }
+    60% {
+        transform: translate3d(-50%, -50%, 0) translateY(-2px) scale(1.03);
+    }
+    80% {
+        transform: translate3d(-50%, -50%, 0) translateY(0) scale(1);
+    }
+    100% {
+        transform: translate3d(-50%, -50%, 0) translateY(0) scale(1);
+    }
+}
+
+@keyframes vc-cursor-dog-idle {
+    0% {
+        transform: translate3d(-50%, -50%, 0) scale(1);
+    }
+    50% {
+        transform: translate3d(-50%, -50%, 0) scale(1.04);
+    }
+    100% {
+        transform: translate3d(-50%, -50%, 0) scale(1);
+    }
+}
+
+@keyframes vc-cursor-dog-sleep {
+    0% {
+        transform: translate3d(-50%, -50%, 0) rotate(0deg) scale(1);
+    }
+    25% {
+        transform: translate3d(-50%, -50%, 0) rotate(10deg) scale(0.96);
+    }
+    50% {
+        transform: translate3d(-50%, -50%, 0) rotate(8deg) scale(0.95);
+    }
+    75% {
+        transform: translate3d(-50%, -50%, 0) rotate(10deg) scale(0.96);
+    }
+    100% {
+        transform: translate3d(-50%, -50%, 0) rotate(8deg) scale(0.95);
+    }
+}
+
+/* ----------------- Cat animations ----------------- */
+
+.vc-cursor-pet-cat.vc-cursor-pet-running {
+    animation-name: vc-cursor-cat-run;
+}
+
+.vc-cursor-pet-cat.vc-cursor-pet-idle {
+    animation-name: vc-cursor-cat-idle;
+}
+
+.vc-cursor-pet-cat.vc-cursor-pet-sleeping {
+    animation-name: vc-cursor-cat-sleep;
+    animation-duration: 1.6s;
+    opacity: 0.95;
+}
+
+@keyframes vc-cursor-cat-run {
+    0% {
+        transform: translate3d(-50%, -50%, 0) translateY(0) scale(1);
+    }
+    20% {
+        transform: translate3d(-50%, -50%, 0) translateY(-4px) scale(1.06);
+    }
+    40% {
+        transform: translate3d(-50%, -50%, 0) translateY(0) scale(1);
+    }
+    60% {
+        transform: translate3d(-50%, -50%, 0) translateY(-3px) scale(1.04);
+    }
+    80% {
+        transform: translate3d(-50%, -50%, 0) translateY(0) scale(1);
+    }
+    100% {
+        transform: translate3d(-50%, -50%, 0) translateY(0) scale(1);
+    }
+}
+
+@keyframes vc-cursor-cat-idle {
+    0% {
+        transform: translate3d(-50%, -50%, 0) scale(1);
+    }
+    33% {
+        transform: translate3d(-50%, -50%, 0) scale(1.03);
+    }
+    66% {
+        transform: translate3d(-50%, -50%, 0) scale(1.01);
+    }
+    100% {
+        transform: translate3d(-50%, -50%, 0) scale(1);
+    }
+}
+
+@keyframes vc-cursor-cat-sleep {
+    0% {
+        transform: translate3d(-50%, -50%, 0) rotate(0deg) scale(1);
+    }
+    20% {
+        transform: translate3d(-50%, -50%, 0) rotate(-12deg) scale(0.96);
+    }
+    40% {
+        transform: translate3d(-50%, -50%, 0) rotate(-8deg) scale(0.95);
+    }
+    60% {
+        transform: translate3d(-50%, -50%, 0) rotate(-12deg) scale(0.96);
+    }
+    80% {
+        transform: translate3d(-50%, -50%, 0) rotate(-8deg) scale(0.95);
+    }
+    100% {
+        transform: translate3d(-50%, -50%, 0) rotate(-8deg) scale(0.95);
+    }
+}
+
+/* Optional: make the pet slightly smaller on very small windows */
+
+@media (max-width: 900px) {
+    .vc-cursor-pet-sprite {
+        font-size: 26px;
+    }
+}
